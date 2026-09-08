@@ -1,0 +1,81 @@
+#lang racket
+
+
+;Exercício 1: ler um número inteiro e dizer se é negativo, zero ou positivo
+(define (sinal)
+  (display "Digite um número: ")
+  (define num (read))
+  (cond
+    [(> num 0)
+         "Positivo"]
+    [(< num 0)
+         "Negativo"]
+    [else "Zero"]
+    ))
+
+;(sinal)
+
+;Exercício 2: ler um número, se for maior que 20 retornar sua metade, se não retornar ele próprio
+(define (maior20)
+  (display "Digite um número: ")
+  (define num(read))
+  (if (> num 20) (/ num 2) num))
+
+;(maior20)
+
+;Exercício 3: ler um número e verificar se é par ou ímpar
+
+(define (paridade)
+  (display "Digite um número: ")
+  (define num(read))
+  (if (= (remainder num 2) 0) "Par" "Ímpar"))
+
+;(paridade)
+
+;Exercício 4: ler idade e informar se é de maior, de menor ou tem mais de 65 anos
+
+(define (lerIdade)
+  (display "Digite sua idade: ")
+  (define idade(read))
+  (cond
+    [(< idade 18)
+     "Você é um newgenzinho de merda"]
+    [(> idade 65)
+     "Você é um unc do caralho kkkkkkkkkkkkkkkk"]
+    [else "Você é um adulto random ahh"]))
+
+;(lerIdade)
+
+;Exercício 5: Função de conversão que recebe uma temperatura em celsius e uma string indicando qual notação ela deve ser convertida
+
+(define (conversaoTemp)
+  (display "Digite a temperatura atual em ºC: ")
+  (define temp (read))
+  (read-line)
+  (display "Digite a notação para qual você deseja converter: ")
+  (define notacao (read-line))
+  (cond
+    [(equal? notacao "Kelvin")
+     (displayln (+ temp 273.15))]
+    [(equal? notacao "Fahrenheit")
+     (displayln (+ (* temp (/ 9 5)) 32))]
+    [else "Notação não reconhecida."]))
+
+;(conversaoTemp)
+
+;Exercício 6: Função que recebe um salário de um funcionário e calcule e retorne seu imposto de renda
+
+(define (IR)
+  (display "Digite seu salário: ")
+  (define salario (read))
+  (cond
+    [(< salario 1500)
+     "Isento de IR"]
+    [(< salario 3000)
+     (displayln (* salario 0.1))]
+    [(< salario 4500)
+     (displayln (* salario 0.2))]
+    [else (displayln (* salario 0.3))]
+    ))
+
+;(IR)
