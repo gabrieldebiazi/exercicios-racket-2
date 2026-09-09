@@ -79,3 +79,58 @@
     ))
 
 ;(IR)
+
+;Exercício 7: Função matemática específica
+
+(define (funcao)
+  (display "Digite o valor da variável: ")
+  (define x (read))
+  
+  (if (number? x)
+      (cond
+        [(<= x 1) 1]
+        [(<= x 2) 2]
+        [(<= x 3) (sqr x)]
+        [else     (expt x 3)])
+      
+      (begin
+        (displayln "Erro: Você deve digitar um número válido!")
+        (funcao))))
+
+;(funcao)
+
+;Exercício 8: A Chevrolet abriu uma linha de crédito para compra de carros aos seus clientes. O valor máximo da prestação não poderá ultrapassar 40% do salário bruto. Faça uma função quereceba o salário bruto e o valor da prestação e retorne se o emprestimo pode ou não ser concedido.
+
+(define (emprestimo salario valor)
+  (if (<= valor (* salario 0.4)) "Empréstimo concedido" "Empréstimo negado"))
+
+;(emprestimo 1500 500)
+;(emprestimo 1500 800)
+
+;Exercício 9: Função que recebe três medidas e verifica se é possível criar um triangulo. caso possivel, verificar se é equilatero, isosceles ou escaleno
+
+(define (triangulo x y z)
+  (define T #t)
+  (cond
+    [(> x (+ y z))
+     (set! T #f)]
+    [(> y (+ x z))
+     (set! T #f)]
+    [(> z (+ x y))
+     (set! T #f)])
+
+    (if (equal? T #t)
+        (cond
+          [(and (= x y) (= y z))
+           "O triangulo é equilátero"]
+          [(and (not (= x y)) (not (= y z)))
+           "O triangulo é escaleno"]
+          [else "O triangulo é isósceles"])
+        "Não é possível formar um triangulo com essas medidas."))
+
+(triangulo 10 3 2)
+
+     
+           
+        
+     
