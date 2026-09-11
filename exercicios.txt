@@ -1,0 +1,235 @@
+#lang racket
+
+
+;Exercício 1: ler um número inteiro e dizer se é negativo, zero ou positivo
+(define (sinal)
+  (display "Digite um número: ")
+  (define num (read))
+  (cond
+    [(> num 0)
+         "Positivo"]
+    [(< num 0)
+         "Negativo"]
+    [else "Zero"]
+    ))
+
+;(sinal)
+
+;Exercício 2: ler um número, se for maior que 20 retornar sua metade, se não retornar ele próprio
+(define (maior20)
+  (display "Digite um número: ")
+  (define num(read))
+  (if (> num 20) (/ num 2) num))
+
+;(maior20)
+
+;Exercício 3: ler um número e verificar se é par ou ímpar
+
+(define (paridade)
+  (display "Digite um número: ")
+  (define num(read))
+  (if (= (remainder num 2) 0) "Par" "Ímpar"))
+
+;(paridade)
+
+;Exercício 4: ler idade e informar se é de maior, de menor ou tem mais de 65 anos
+
+(define (lerIdade)
+  (display "Digite sua idade: ")
+  (define idade(read))
+  (cond
+    [(< idade 18)
+     "Você é um newgenzinho de merda"]
+    [(> idade 65)
+     "Você é um unc do caralho kkkkkkkkkkkkkkkk"]
+    [else "Você é um adulto random ahh"]))
+
+;(lerIdade)
+
+;Exercício 5: Função de conversão que recebe uma temperatura em celsius e uma string indicando qual notação ela deve ser convertida
+
+(define (conversaoTemp)
+  (display "Digite a temperatura atual em ºC: ")
+  (define temp (read))
+  (read-line)
+  (display "Digite a notação para qual você deseja converter: ")
+  (define notacao (read-line))
+  (cond
+    [(equal? notacao "Kelvin")
+     (displayln (+ temp 273.15))]
+    [(equal? notacao "Fahrenheit")
+     (displayln (+ (* temp (/ 9 5)) 32))]
+    [else "Notação não reconhecida."]))
+
+;(conversaoTemp)
+
+;Exercício 6: Função que recebe um salário de um funcionário e calcule e retorne seu imposto de renda
+
+(define (IR)
+  (display "Digite seu salário: ")
+  (define salario (read))
+  (cond
+    [(< salario 1500)
+     "Isento de IR"]
+    [(< salario 3000)
+     (displayln (* salario 0.1))]
+    [(< salario 4500)
+     (displayln (* salario 0.2))]
+    [else (displayln (* salario 0.3))]
+    ))
+
+;(IR)
+
+;Exercício 7: Função matemática específica
+
+(define (funcao)
+  (display "Digite o valor da variável: ")
+  (define x (read))
+  
+  (if (number? x)
+      (cond
+        [(<= x 1) 1]
+        [(<= x 2) 2]
+        [(<= x 3) (sqr x)]
+        [else     (expt x 3)])
+      
+      (begin
+        (displayln "Erro: Você deve digitar um número válido!")
+        (funcao))))
+
+;(funcao)
+
+;Exercício 8: A Chevrolet abriu uma linha de crédito para compra de carros aos seus clientes. O valor máximo da prestação não poderá ultrapassar 40% do salário bruto. Faça uma função quereceba o salário bruto e o valor da prestação e retorne se o emprestimo pode ou não ser concedido.
+
+(define (emprestimo salario valor)
+  (if (<= valor (* salario 0.4)) "Empréstimo concedido" "Empréstimo negado"))
+
+;(emprestimo 1500 500)
+;(emprestimo 1500 800)
+
+;Exercício 9: Função que recebe três medidas e verifica se é possível criar um triangulo. caso possivel, verificar se é equilatero, isosceles ou escaleno
+
+(define (triangulo x y z)
+  (define T #t)
+  (cond
+    [(> x (+ y z))
+     (set! T #f)]
+    [(> y (+ x z))
+     (set! T #f)]
+    [(> z (+ x y))
+     (set! T #f)])
+
+    (if (equal? T #t)
+        (cond
+          [(and (= x y) (= y z))
+           "O triangulo é equilátero"]
+          [(and (not (= x y)) (not (= y z)))
+           "O triangulo é escaleno"]
+          [else "O triangulo é isósceles"])
+        "Não é possível formar um triangulo com essas medidas."))
+
+;(triangulo 10 3 2)
+
+;Exercício 10: Função que recebe idade de um nadador e o classifica em categorias
+
+(define (nadador idade)
+  (cond
+    [(< idade 5)
+     "Proibido de realizar natação."]
+    [(and (>= idade 5) (<= idade 7))
+     "Infantil A"]
+    [(<= idade 10)
+     "Infantil B"]
+    [(<= idade 13)
+     "Juvenil A"]
+    [(<= idade 17)
+     "Juvenil B"]
+    [else "Adulto"]))
+
+;(nadador 14)
+
+;Exercício 11: Função que recebe 3 números A B C, e retorna um booleano indicando se A está no intervalo [B, C]
+(define (intervalo a b c)
+  (if (and (>= a b) (<= a c)) #t #f)
+  )
+
+;(intervalo 5 4 6)
+;(intervalo 5 6 7)
+
+;Exercício 12: Função que recebe um ponto no plano cartesiano e retorna em qual quadrante ele se encontra
+(define (quadrante x y)
+  (cond
+    [(and (> x 0) (> y 0))
+     "O ponto se encontra no primeiro quadrante."]
+    [(and (< x 0) (> y 0))
+     "O ponto se encontra no segundo quadrante."]
+    [(and (< x 0) (< y 0))
+     "O ponto se encontra no terceiro quadrante."]
+    [(and (> x 0) (< y 0))
+     "O ponto se encontra no quarto quadrante."]
+    [else "O ponto se encontra na origem."]))
+
+;(quadrante 1 1)
+;(quadrante -1 1)
+;(quadrante -1 -1)
+;(quadrante 1 -1)
+;(quadrante 0 0)
+
+;Exercício 13: Função que recebe duas notas de um aluno e retorna seu ranking de acordo com a média
+(define (ranking a b)
+
+  (define media (/ (+ a b) 2))
+
+  (cond
+    [(< media 5)
+     "E"]
+    [(< media 6)
+     "D"]
+    [(< media 7)
+     "C"]
+    [(< media 9)
+     "B"]
+    [(>= media 9)
+     "A"]))
+
+;(ranking 4 4)
+;(ranking 5 6)
+;(ranking 6 7)
+;(ranking 7 8)
+;(ranking 9 10)
+
+;Exercício 14a: recebe 3 números e retorna o resultado do maior numero - menor numero
+(define (encontrar-menor a b c)
+  (min a b c))
+
+(define (encontrar-maior a b c)
+  (max a b c))
+
+(define (encontrar-meio a b c)
+  (- (+ a b c) 
+     (encontrar-menor a b c) 
+     (encontrar-maior a b c)))
+
+(define (14a a b c)
+  (- (encontrar-maior a b c) (encontrar-menor a b c)))
+
+;(14a 3 1 5)
+
+;Exercício 14b: recebe 3 números e retorna o resultado do numero do meio * menor numero
+(define (14b a b c)
+  (* (encontrar-meio a b c) (encontrar-menor a b c)))
+
+;(14b 2 5 7)
+
+;Exercício 14a: recebe 3 números e retorna o resultado do numero do meio + maior numero
+(define (14c a b c)
+  (+ (encontrar-meio a b c) (encontrar-maior a b c)))
+
+;(14c 3 5 7)
+   
+          
+
+     
+           
+        
+     
